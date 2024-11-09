@@ -1,7 +1,10 @@
-mkdir build
+@echo off
+if not exist build (
+	mkdir build
+)
 
 pushd build
 
-clang -o bracket_c.exe ../main.c
+clang -g -fuse-ld=lld -o bracket_c.exe ../main.c -lUser32
 
 popd
