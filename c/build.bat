@@ -5,6 +5,6 @@ if not exist build (
 
 pushd build
 
-clang -g -fuse-ld=lld -o bracket_c.exe ../main.c -lUser32
+clang -g -fuse-ld=lld -o bracket_c.exe ../main.c 
 
 popd
