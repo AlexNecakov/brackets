@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"math"
 	"os"
@@ -75,4 +76,38 @@ func main() {
 		}
 	}
 
+	// sorting loop
+	current = &rootNode
+	for 0 < 1 {
+		if !current.child_left.decided {
+			current = current.child_left
+		} else if !current.child_right.decided {
+			current = current.child_right
+		} else {
+			fmt.Printf("A %s vs B %s\n", current.child_left.name, current.child_right.name)
+			for 0 < 1 {
+				reader := bufio.NewReader(os.Stdin)
+				choice, _, _ := reader.ReadRune()
+				if choice == 'a' || choice == 'j' {
+					current.name = current.child_left.name
+					break
+				} else if choice == 'b' || choice == 'k' {
+					current.name = current.child_right.name
+					break
+				}
+			}
+			current.decided = true
+			fmt.Printf("round winner: %s\n", current.name)
+			current = current.parent
+		}
+
+		if rootNode.decided {
+			break
+		}
+	}
+
+	// printing loop
+	fmt.Printf("grand winner %s\n", rootNode.name)
+
+	os.Exit(0)
 }
